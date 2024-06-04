@@ -1,0 +1,4 @@
+class: Infos
+
+fields:
+    infoList: List<Info>

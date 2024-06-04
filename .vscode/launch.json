@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "poc_server (Dart)",
+      "type": "dart",
+      "request": "launch",
+      "program": "${workspaceFolder}/poc_server/bin/main.dart"
+    },
+    {
+      "name": "poc_flutter_admin (Web)",
+      "type": "dart",
+      "request": "launch",
+      "program": "${workspaceFolder}/poc_flutter_admin/lib/main.dart", // Corrected
+      "args": ["run", "-d", "chrome", "--web-port=8081"],
+      "cwd": "${workspaceFolder}/poc_flutter_admin"
+    },
+    {
+      "name": "poc_flutter_consumer (macOS)",
+      "type": "dart",
+      "request": "launch",
+      "program": "${workspaceFolder}/poc_flutter_consumer/lib/main.dart", // Corrected
+      "args": ["run", "-d", "macos"],
+      "cwd": "${workspaceFolder}/poc_flutter_consumer"
+    }
+  ]
+}
