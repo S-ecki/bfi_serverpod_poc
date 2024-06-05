@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:poc_client/poc_client.dart';
 import 'package:serverpod_flutter/serverpod_flutter.dart';
 
+const bfiRed = Color(0xFFC50A33);
+const bfiBlue = Color(0xFF003871);
+
 // Sets up a singleton client object that can be used to talk to the server from
 // anywhere in our app. The client is generated from your server code.
 // The client is set up to connect to a Serverpod running on a local server on
@@ -20,14 +23,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Bfi Prototype',
+        title: 'Bfi Prototyp',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
         home: const Scaffold(
           body: Banner(
-              message: "Prototype",
+              message: "Prototyp",
               location: BannerLocation.topEnd,
               child: DesktopInfoDisplay()),
         ));
@@ -83,14 +86,18 @@ class _DesktopInfoDisplayState extends State<DesktopInfoDisplay> {
       );
     }
 
-    return ListView.builder(
+    return ListView.separated(
+      separatorBuilder: (context, index) => const Divider(),
       itemCount: infos!.length,
       itemBuilder: (context, index) {
         final info = infos![index];
         return ListTile(
-          title: Text(info.title),
-          subtitle: Text(info.body),
-        );
+            onTap: () {},
+            title: Text(info.title),
+            subtitle: Text(info.body),
+            trailing: info.important ?? false
+                ? const Icon(Icons.warning, color: bfiRed)
+                : null);
       },
     );
   }

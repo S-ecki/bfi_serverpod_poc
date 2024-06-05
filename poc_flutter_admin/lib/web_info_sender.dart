@@ -14,6 +14,7 @@ class WebInfoSenderState extends State<WebInfoSender> {
   final _bodyController = TextEditingController();
 
   List<Info> infos = [];
+  var isImportant = false;
 
   @override
   void initState() {
@@ -33,7 +34,10 @@ class WebInfoSenderState extends State<WebInfoSender> {
   }
 
   void _sendInfo() {
-    final info = Info(title: _titleController.text, body: _bodyController.text);
+    final info = Info(
+        title: _titleController.text,
+        body: _bodyController.text,
+        important: isImportant);
     client.info.sendStreamMessage(info);
     _titleController.clear();
     _bodyController.clear();
@@ -79,13 +83,24 @@ class WebInfoSenderState extends State<WebInfoSender> {
               minLines: 4,
             ),
             const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: _sendInfo,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: bfiRed,
-                foregroundColor: Colors.white,
-              ),
-              child: const Text('Veröffentlichen'),
+            Row(
+              children: [
+                Checkbox(
+                  value: isImportant,
+                  onChanged: (value) => setState(() => isImportant = value!),
+                  activeColor: bfiBlue,
+                ),
+                const Text("Wichtig"),
+                const Spacer(),
+                ElevatedButton(
+                  onPressed: _sendInfo,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: bfiRed,
+                    foregroundColor: Colors.white,
+                  ),
+                  child: const Text('Veröffentlichen'),
+                ),
+              ],
             ),
             const SizedBox(height: 16),
             const Divider(
@@ -94,7 +109,7 @@ class WebInfoSenderState extends State<WebInfoSender> {
             ),
             const SizedBox(height: 16),
             Expanded(
-              child: InfoListWidget(infos: infos.map((e) => e.title).toList()),
+              child: InfoListWidget(infos: infos),
             ),
           ],
         ),
@@ -104,7 +119,7 @@ class WebInfoSenderState extends State<WebInfoSender> {
 }
 
 class InfoListWidget extends StatelessWidget {
-  final List<String> infos;
+  final List<Info> infos;
 
   const InfoListWidget({
     super.key,
@@ -116,12 +131,21 @@ class InfoListWidget extends StatelessWidget {
     return ListView.builder(
       itemCount: infos.length,
       itemBuilder: (context, index) {
+        final info = infos[index];
         return ListTile(
+          onTap: () {},
           iconColor: bfiBlue,
           dense: false,
-          title: Text(
-            infos[index],
-            style: Theme.of(context).textTheme.bodyLarge,
+          title: Row(
+            children: [
+              Text(
+                info.title,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              const SizedBox(width: 8),
+              if (info.important ?? false)
+                const Icon(Icons.warning, color: bfiRed),
+            ],
           ),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,

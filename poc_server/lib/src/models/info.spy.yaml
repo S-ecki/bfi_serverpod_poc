@@ -21,3 +21,4 @@ class: Info
 fields:
   title: String
   body: String
+  important: bool?

@@ -14,17 +14,20 @@ abstract class Info implements _i1.SerializableModel {
   Info._({
     required this.title,
     required this.body,
+    this.important,
   });
 
   factory Info({
     required String title,
     required String body,
+    bool? important,
   }) = _InfoImpl;
 
   factory Info.fromJson(Map<String, dynamic> jsonSerialization) {
     return Info(
       title: jsonSerialization['title'] as String,
       body: jsonSerialization['body'] as String,
+      important: jsonSerialization['important'] as bool?,
     );
   }
 
@@ -32,15 +35,19 @@ abstract class Info implements _i1.SerializableModel {
 
   String body;
 
+  bool? important;
+
   Info copyWith({
     String? title,
     String? body,
+    bool? important,
   });
   @override
   Map<String, dynamic> toJson() {
     return {
       'title': title,
       'body': body,
+      if (important != null) 'important': important,
     };
   }
 
@@ -50,23 +57,29 @@ abstract class Info implements _i1.SerializableModel {
   }
 }
 
+class _Undefined {}
+
 class _InfoImpl extends Info {
   _InfoImpl({
     required String title,
     required String body,
+    bool? important,
   }) : super._(
           title: title,
           body: body,
+          important: important,
         );
 
   @override
   Info copyWith({
     String? title,
     String? body,
+    Object? important = _Undefined,
   }) {
     return Info(
       title: title ?? this.title,
       body: body ?? this.body,
+      important: important is bool? ? important : this.important,
     );
   }
 }

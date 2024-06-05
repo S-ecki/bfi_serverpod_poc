@@ -1,4 +1,4 @@
-import 'package:bfi_prototype_web/web_info_sender.dart';
+import 'package:bfi_prototype_web/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:poc_client/poc_client.dart';
 import 'package:serverpod_flutter/serverpod_flutter.dart';
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Bfi Prototype Web',
+      title: 'Bfi Prototyp Web',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
       home: const Banner(
         message: "Prototyp",
         location: BannerLocation.topEnd,
-        child: WebInfoSender(),
+        child: AuthScreen(),
       ),
     );
   }

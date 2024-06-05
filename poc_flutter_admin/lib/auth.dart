@@ -69,7 +69,7 @@ class AuthScreenState extends State<AuthScreen> {
                   TextField(
                     controller: _passwordController,
                     decoration: const InputDecoration(
-                      labelText: 'Password',
+                      labelText: 'Passwort',
                     ),
                     obscureText: true,
                   ),
