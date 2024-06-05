@@ -1,3 +1,4 @@
+import 'package:bfi_prototype_web/main.dart';
 import 'package:bfi_prototype_web/web_info_sender.dart';
 import 'package:flutter/material.dart';
 
@@ -5,15 +6,15 @@ class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
 
   @override
-  _AuthScreenState createState() => _AuthScreenState();
+  AuthScreenState createState() => AuthScreenState();
 }
 
-class _AuthScreenState extends State<AuthScreen> {
+class AuthScreenState extends State<AuthScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   void _login() {
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const WebInfoSender()),
     );
@@ -28,7 +29,7 @@ class _AuthScreenState extends State<AuthScreen> {
             begin: Alignment.bottomLeft,
             end: Alignment.topRight,
             colors: [
-              Color(0xFF003871),
+              bfiBlue,
               Color(0xFF0072BB),
             ],
           ),
@@ -53,18 +54,15 @@ class _AuthScreenState extends State<AuthScreen> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  const Text(
+                  Text(
                     'BFI Admin Login',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   const SizedBox(height: 20),
                   TextField(
                     controller: _usernameController,
                     decoration: const InputDecoration(
-                      labelText: 'Email',
+                      labelText: 'Name',
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -82,7 +80,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       ElevatedButton(
                         onPressed: _login,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFC50A33),
+                          backgroundColor: bfiRed,
                           foregroundColor: Colors.white,
                         ),
                         child: const Text('Login'),
