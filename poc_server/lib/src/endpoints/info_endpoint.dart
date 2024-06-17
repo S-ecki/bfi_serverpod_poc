@@ -6,12 +6,25 @@ const _channelPixelAdded = 'pixel-added';
 class InfoEndpoint extends Endpoint {
   final data = Infos(infoList: [
     Info(
-      title: 'Serverpod',
-      body: 'A server framework for Dart.',
+      title: 'Surfen mit Speed',
+      body:
+          'Die neuen „High-Performance“ WLAN Kabel sind da. Damit erreicht Ihr großartige Downloadgeschwindigkeiten von 12 (!!) kb/s. Jede Person, die eines benötigt, einfach bitte kurz per Fax bei uns melden.',
+      important: true,
     ),
     Info(
-      title: 'Serverpod Studio',
-      body: 'A development environment for Serverpod.',
+      title: 'Neuer Entwicklungspartner',
+      body:
+          'Das BFI wird in Zukunft ihre IT-Infrastuktur mit der Firma "LEAN-CODERS" auf das nächste Level bringen. Wir freuen uns auf eine effiziente Zusammenarbeit.',
+    ),
+    Info(
+      title: 'Heiligabend vor der Tür',
+      body:
+          'In 202 Tagen ist bereits erneut Heiligabend. Ein Grund zur Freude, oder?',
+    ),
+    Info(
+      title: 'Bald bessere Luft!',
+      body:
+          'Die IT Abteilung hat Großes zu verkünden: Wir haben einen neuen Luftbefeuchter. Vielen Dank für Eure Aufmerksamkeit!',
     ),
   ]);
 
